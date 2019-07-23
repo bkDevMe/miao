@@ -20,6 +20,11 @@ var bkdevme = {
         return array.slice(n)
     },
     dropRight: function (array, n = 1) {
-        return array.slice(-n)
+        if (n >= array.length) return []
+        else if (n == 0) return array
+        else {
+            return array.slice(0, array.length - n)
+        }
+
     }
 }
