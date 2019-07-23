@@ -12,5 +12,8 @@ var bkdevme = {
             result[resIndex++] = ary.slice(start, start += size)
         }
         return result
+    },
+    difference: function (array, values) {
+        return array.filter(it => !values.includes(it))
     }
 }
