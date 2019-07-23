@@ -16,7 +16,10 @@ var bkdevme = {
     difference: function (array, ...values) {
         return array.filter(it => !values.includes(it))
     },
-    drop: function(array, n = 1) {
+    drop: function (array, n = 1) {
         return array.slice(n)
+    },
+    dropRight: function (array, n = 1) {
+        return array.slice(-n)
     }
 }
