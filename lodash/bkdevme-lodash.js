@@ -17,7 +17,9 @@ var bkdevme = {
         return array.filter(it => !values.includes(it))
     },
     drop: function (array, n = 1) {
-        return array.slice(n)
+        // return array.slice(n)
+        const length = array == null ? 0 : array.length
+        return length ? array.slice(n < 0 ? 0 : n, length) : []
     },
     dropRight: function (array, n = 1) {
         if (n >= array.length) return []
@@ -25,6 +27,11 @@ var bkdevme = {
         else {
             return array.slice(0, array.length - n)
         }
+    },
+    differenceBy: function () {
 
+    },
+    dropRightWhile: function (array, f) {
+        return array.filter(f);
     }
 }
