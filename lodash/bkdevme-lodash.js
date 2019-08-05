@@ -14,7 +14,11 @@ var bkdevme = {
         return result
     },
     difference: function (array, ...values) {
-        return array.filter(it => !values.includes(it))
+        let restVal = []
+        for(let i = 0; i < values.length; i++) {
+            restVal.push(...values[i])
+        }
+        return array.filter(it => !restVal.includes(it))
     },
     drop: function (array, n = 1) {
         // return array.slice(n)
