@@ -44,5 +44,11 @@ var bkdevme = {
             }
         }
         return result
+    },
+    fill: function (array, value, start = 0, end) {
+        if (end == undefined) end = array.length
+        for (let i = start; i < end; i++)
+            array[i] = value
     }
+
 }
