@@ -51,7 +51,7 @@ var bkdevme = {
             array[i] = value
         return array
     },
-    falttenDeep: function (array) {
+    flattenDeep: function (array) {
         let result = []
         for (let item of array) {
             if (Array.isArray(item)) {
