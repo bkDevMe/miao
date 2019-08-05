@@ -49,6 +49,32 @@ var bkdevme = {
         if (end == undefined) end = array.length
         for (let i = start; i < end; i++)
             array[i] = value
+        return array
+    },
+    falttenDeep: function (array) {
+        let result = []
+        for (let item of array) {
+            if (Array.isArray(item)) {
+                let flattenItem = this.flattenDeep(item)
+                result.push(...flattenItem)
+            } else {
+                result.push(item)
+            }
+        }
+        return result
+    },
+    flattenDepth: function(array,depth = 1){
+        if(depth == 0) return array.slice()
+        let result = []
+        for(let ary of array) {
+            if(Array.isArray(ary)) {
+                let flattenItem = this.flattenDepth(ary,depth - 1)
+                result.push(...flattenItem)
+            } else {
+                result.push(ary)
+            }
+        }
+        return result
     }
 
 }
