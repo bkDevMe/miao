@@ -15,7 +15,7 @@ var bkdevme = {
     },
     difference: function (array, ...values) {
         let restVal = []
-        for(let i = 0; i < values.length; i++) {
+        for (let i = 0; i < values.length; i++) {
             restVal.push(...values[i])
         }
         return array.filter(it => !restVal.includes(it))
@@ -67,18 +67,41 @@ var bkdevme = {
         }
         return result
     },
-    flattenDepth: function(array,depth = 1){
-        if(depth == 0) return array.slice()
+    flattenDepth: function (array, depth = 1) {
+        if (depth == 0) return array.slice()
         let result = []
-        for(let ary of array) {
-            if(Array.isArray(ary)) {
-                let flattenItem = this.flattenDepth(ary,depth - 1)
+        for (let ary of array) {
+            if (Array.isArray(ary)) {
+                let flattenItem = this.flattenDepth(ary, depth - 1)
                 result.push(...flattenItem)
             } else {
                 result.push(ary)
             }
         }
         return result
+    },
+    isMatch: function (obj, src) {
+        if (obj === src) return true
+        for (let key in src) {
+            if (typeof src[key] == 'object' && src[key] !== null) {
+                if (!this.isMatch(obj[key], src[key])) {
+                    return false
+                }
+            } else {
+                if (obj[key] != src[key]) {
+                    return false
+                }
+            }
+        }
+        return true
+    },
+    matches: function (src) {
+        return function (obj) {
+            return this.isMatch(obj, src)
+        }
+    },
+    toPath: function(str) {
+        return str.split(/\.|\[|\]\./g)
     }
 
 }
