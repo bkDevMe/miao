@@ -100,8 +100,21 @@ var bkdevme = {
             return this.isMatch(obj, src)
         }
     },
-    toPath: function(str) {
+    toPath: function (str) {
         return str.split(/\.|\[|\]\./g)
+    },
+    get: function (obj, path, defaultValue) {
+        let path = this.toPath(path)
+        for (let i = 0; i < path.length; i++) {
+            if (obj === undefined) return defaultValue
+            obj = obj[path[i]]
+        }
+        return obj
+    },
+    property: function (path) {
+        return function (obj) {
+            return this.get(obj, path)
+        }
     }
 
 }
