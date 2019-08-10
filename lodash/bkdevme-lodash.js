@@ -111,10 +111,27 @@ var bkdevme = {
         }
         return obj
     },
+    bind: function(f,thisArg,...fixedArgs) {
+        return function(...args) {
+            let acturalArgs = [...fixedArgs]
+            for(let i = 0; i < acturalArgs.length; i++) {
+                if(acturalArgs[i] === window) {
+                    acturalArgs[i] = args.shift()
+                }
+            }
+            acturalArgs.push(...args)
+            return f.apply(thisArg,acturalArgs)
+        }
+    },
     property: function (path) {
         return function (obj) {
             return this.get(obj, path)
         }
+    },
+    matchesProperty: function(path,value) {
+        return function(obj) {
+            return isEqual(get(obj,path),value)
+        }
     }
-
+    
 }
