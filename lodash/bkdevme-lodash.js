@@ -104,7 +104,7 @@ var bkdevme = {
         return str.split(/\.|\[|\]\./g)
     },
     get: function (obj, path, defaultValue) {
-        let path = this.toPath(path)
+        path = this.toPath(path)
         for (let i = 0; i < path.length; i++) {
             if (obj === undefined) return defaultValue
             obj = obj[path[i]]
