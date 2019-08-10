@@ -132,6 +132,9 @@ var bkdevme = {
         return function(obj) {
             return isEqual(get(obj,path),value)
         }
+    },
+    identity: function(value) {
+        return value
     }
     
 }
