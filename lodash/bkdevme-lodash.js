@@ -156,6 +156,13 @@ var bkdevme = {
         } else {
             return -1
         }
+    },
+    initial: function (array) {
+        if(Array.isArray(array)){
+            return array.slice(0,-1)
+        } else {
+            return []
+        }
     }
 
 }
