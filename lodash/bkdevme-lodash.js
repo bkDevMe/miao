@@ -135,9 +135,27 @@ var bkdevme = {
     identity: function (value) {
         return value
     },
-    head: function(array) {
-        if(!array.length) return undefined
+    head: function (array) {
+        if (!array.length) return undefined
         else return array[0]
+    },
+    indexof: function (array, value, fromIndex = 0) {
+        if (Array.isArray(array)) {
+            if (fromIndex >= 0) {
+                for (let i = fromIndex; i < array.length; i++) {
+                    if (array[fromIndex] == value) return i
+                }
+                return -1
+            } else {
+                fromIndex = array.length + fromIndex
+                for (let i = fromIndex; i < array.length; i++) {
+                    if (array[fromIndex] == value) return i
+                }
+                return -1
+            }
+        } else {
+            return -1
+        }
     }
 
 }
