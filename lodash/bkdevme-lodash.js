@@ -361,6 +361,18 @@ var bkdevme = {
             return -1
         }
         return -1
-    }
+    },
+    /**
+     * 获取array数组的第n个元素。如果n为负数，则返回从数组结尾开始的第n个元素。
+     *
+     * @param   {Array}  array  查找的数组
+     * @param   {number}  n      返回元素的soyb
+     *
+     * @return  {*}         获取aray数组的第n个元素
+     */
+    nth: function (array, n = 0) {
+        return array[n]
+    },
+    
 
 }
