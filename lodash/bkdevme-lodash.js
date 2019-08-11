@@ -256,7 +256,7 @@ var bkdevme = {
         if (Array.isArray(array)) {
             fromIndex = fromIndex >= 0 ? fromIndex : fromIndex + array.length
             for (let i = fromIndex; i < array.length; i++) {
-                if (this.sameValueZero(array[i],value)) return i
+                if (this.sameValueZero(array[i], value)) return i
             }
             return -1
         } else {
@@ -308,12 +308,39 @@ var bkdevme = {
      * @return {boolean} 
      */
     sameValueZero: function (x, y) {
-        if(Object.is(x,y)) {
+        if (Object.is(x, y)) {
             return true
-        } else if(x == 0 || x == -0) {
+        } else if (x == 0 || x == -0) {
             return x === y
         }
         return false
+    },
+    /**
+     * 调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用3个参数： (value, index|key, collection)。 
+     * 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。 
+     *
+     * @param   {Array | Object}  collection： 一个用来迭代的集合 
+     * @param   {Function}  iteratee：每次迭代调用的函数    
+     *
+     * @return  {*} 返回集合collection    
+     */
+    forEach: function (collection, iteratee) {
+        let type = Object.prototype.toString(collection)
+        if (type === '[object Array]') {
+            for (let i = 0; i < collection.length; i++) {
+                if (iteratee(collection[i], i, collection) === false) break;
+            }
+            return collection
+        } else if (type === '[object Object]') {
+            for (const key in collection) {
+                if (collection.hasOwnProperty(key)) {
+                    const value = collection[key];
+                    if (iteratee(value, key, collection) === false) break;
+                }
+            }
+            return collection
+        }
+        return collection
     }
 
 }
