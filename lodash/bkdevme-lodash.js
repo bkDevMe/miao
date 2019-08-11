@@ -139,7 +139,7 @@ var bkdevme = {
         if (!array.length) return undefined
         else return array[0]
     },
-    indexof: function (array, value, fromIndex = 0) {
+    indexOf: function (array, value, fromIndex = 0) {
         if (Array.isArray(array)) {
             if (fromIndex >= 0) {
                 for (let i = fromIndex; i < array.length; i++) {
