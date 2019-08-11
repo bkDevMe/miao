@@ -145,7 +145,7 @@ var bkdevme = {
             for (let i = fromIndex; i < array.length; i++) {
                 if (array[i] == value) return i
             }
-            return - 1
+            return -1
         } else {
             return -1
         }
@@ -155,6 +155,22 @@ var bkdevme = {
             return array.slice(0, -1)
         } else {
             return []
+        }
+    },
+    join: function (array, separator = ',') {
+        if(Array.isArray(array)) {
+            if(array.length) {
+                let len = separator.length
+                let str = ""
+                for(let i = 0; i < array.length; i++) {
+                    str = str + array[i] + separator
+                }
+                return str.slice(0,-len)
+            } else {
+                return ""
+            }
+        } else {
+            return ""
         }
     }
 
