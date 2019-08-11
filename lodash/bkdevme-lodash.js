@@ -49,8 +49,7 @@ var bkdevme = {
         }
         return result
     },
-    fill: function (array, value, start = 0, end) {
-        if (end == undefined) end = array.length
+    fill: function (array, value, start = 0, end = array.length) {
         for (let i = start; i < end; i++)
             array[i] = value
         return array
@@ -111,16 +110,16 @@ var bkdevme = {
         }
         return obj
     },
-    bind: function(f,thisArg,...fixedArgs) {
-        return function(...args) {
+    bind: function (f, thisArg, ...fixedArgs) {
+        return function (...args) {
             let acturalArgs = [...fixedArgs]
-            for(let i = 0; i < acturalArgs.length; i++) {
-                if(acturalArgs[i] === window) {
+            for (let i = 0; i < acturalArgs.length; i++) {
+                if (acturalArgs[i] === window) {
                     acturalArgs[i] = args.shift()
                 }
             }
             acturalArgs.push(...args)
-            return f.apply(thisArg,acturalArgs)
+            return f.apply(thisArg, acturalArgs)
         }
     },
     property: function (path) {
@@ -128,13 +127,17 @@ var bkdevme = {
             return this.get(obj, path)
         }
     },
-    matchesProperty: function(path,value) {
-        return function(obj) {
-            return isEqual(get(obj,path),value)
+    matchesProperty: function (path, value) {
+        return function (obj) {
+            return isEqual(get(obj, path), value)
         }
     },
-    identity: function(value) {
+    identity: function (value) {
         return value
+    },
+    head: function(array) {
+        if(!array.length) return undefined
+        else return array[0]
     }
-    
+
 }
