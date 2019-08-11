@@ -158,20 +158,24 @@ var bkdevme = {
         }
     },
     join: function (array, separator = ',') {
-        if(Array.isArray(array)) {
-            if(array.length) {
+        if (Array.isArray(array)) {
+            if (array.length) {
                 let len = separator.length
                 let str = ""
-                for(let i = 0; i < array.length; i++) {
+                for (let i = 0; i < array.length; i++) {
                     str = str + array[i] + separator
                 }
-                return str.slice(0,-len)
+                return str.slice(0, -len)
             } else {
                 return ""
             }
         } else {
             return ""
         }
+    },
+    last: function (array) {
+        let length = array == null ? 0 : array.length;
+        return length ? array[length - 1] : undefined;
     }
 
 }
