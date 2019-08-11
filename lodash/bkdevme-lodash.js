@@ -373,6 +373,15 @@ var bkdevme = {
     nth: function (array, n = 0) {
         return array[n]
     },
-    
+    /**
+     * 移除数组array中所有和给定值相等的元素，使用 SameValueZero 进行全等比较。 
+     * 【注】 Array.prototype.includes()实现SameValueZero
+     * 
+     * @param {Array} array 要修改的数组
+     * @param  {...any} values 要删除的数组
+     */
+    pull: function(array,...values) {
+        return array.filter(it => !values.includes(it))
+    }
 
 }
