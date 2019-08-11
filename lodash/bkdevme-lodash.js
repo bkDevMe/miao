@@ -145,7 +145,7 @@ var bkdevme = {
             for (let i = fromIndex; i < array.length; i++) {
                 if (array[i] == value) return i
             }
-            retrun - 1
+            return - 1
         } else {
             return -1
         }
