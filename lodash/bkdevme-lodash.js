@@ -355,7 +355,7 @@ var bkdevme = {
         let type = Array.prototype.toString.call(array)
         if (type === '[object Array]') {
             if (fromIndex == undefined) fromIndex = array.length - 1
-            for (let i = fromIndex; fromIndex >= 0; i--) {
+            for (let i = fromIndex; i >= 0; i--) {
                 if (this.sameValueZero(array[i], value)) return i
             }
             return -1
@@ -371,6 +371,7 @@ var bkdevme = {
      * @return  {*}         获取aray数组的第n个元素
      */
     nth: function (array, n = 0) {
+        n = n >= 0 ? n : array.length + n
         return array[n]
     },
     /**
@@ -380,7 +381,7 @@ var bkdevme = {
      * @param {Array} array 要修改的数组
      * @param  {...any} values 要删除的数组
      */
-    pull: function(array,...values) {
+    pull: function (array, ...values) {
         return array.filter(it => !values.includes(it))
     }
 
