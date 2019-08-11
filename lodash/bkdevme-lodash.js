@@ -341,6 +341,26 @@ var bkdevme = {
             return collection
         }
         return collection
+    },
+    /**
+     * 这个方法类似 _.indexOf ，区别是它是从右到左遍历array的元素。
+     *
+     * @param   {Array}  array      要搜索的数组。
+     * @param   {[type]}  value      : 要搜索的值。
+     * @param   {number}  fromIndex  开始搜索的索引值。
+     *
+     * @return  {number}             返回匹配值的索引值，否则返回 -1。
+     */
+    lastIndexOf: function (array, value, fromIndex) {
+        let type = Array.prototype.toString.call(array)
+        if (type === '[object Array]') {
+            if (fromIndex == undefined) fromIndex = array.length - 1
+            for (let i = fromIndex; fromIndex >= 0; i--) {
+                if (this.sameValueZero(array[i], value)) return i
+            }
+            return -1
+        }
+        return -1
     }
 
 }
