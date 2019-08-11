@@ -352,7 +352,7 @@ var bkdevme = {
      * @return  {number}             返回匹配值的索引值，否则返回 -1。
      */
     lastIndexOf: function (array, value, fromIndex) {
-        let type = Array.prototype.toString.call(array)
+        let type = Object.prototype.toString.call(array)
         if (type === '[object Array]') {
             if (fromIndex == undefined) fromIndex = array.length - 1
             for (let i = fromIndex; i >= 0; i--) {
