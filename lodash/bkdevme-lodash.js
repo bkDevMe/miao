@@ -405,6 +405,28 @@ var bkdevme = {
         } else {
             return array
         }
+    },
+    /**
+     * 使用二进制的方式检索来决定 value值 应该插入到数组中 尽可能小的索引位置，以保证array的排序。
+     * 使用类二分查找的方式
+     * @param   {Array}  array  要检查的排序数组
+     * @param   {*}  value  要评估的值
+     *
+     * @return  {number}         应该要插入的index
+     */
+    //只讨论插入number的情况
+    sortedIndex: function (array, value) {
+        let low = 0,
+            high = array.length
+        while (low < high) {
+            let mid = (high + low) >>> 1
+            if (array[mid] < value) {
+                low = mid + 1
+            } else {
+                high = mid //这里是关键
+            }
+        }
+        return high //这里是关键
     }
 
 }
