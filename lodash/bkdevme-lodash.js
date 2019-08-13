@@ -155,8 +155,9 @@ var bkdevme = {
      * @return  {function }  返回新函数
      */
     matches: function (src) {
+        let that = this
         return function (obj) {
-            return this.isMatch(obj, src)
+            return that.isMatch(obj, src)
         }
     },
     /**
@@ -215,8 +216,9 @@ var bkdevme = {
      * @return  {Function}  返回新的函数
      */
     property: function (path) {
+        let that = this
         return function (obj) {
-            return this.get(obj, path)
+            return that.get(obj, path)
         }
     },
     matchesProperty: function (path, value) {
@@ -438,7 +440,34 @@ var bkdevme = {
         // let result = arrays.reduce((a,b) => a.concat(b),[])
         // let resSet = new Set(result)
         // return [...resSet.values()]
-        return [...new Set(arrays.reduce((a,b) => a.concat(b),[])).values()]
+        return [...new Set(arrays.reduce((a, b) => a.concat(b), [])).values()]
+    },
+    /**
+     * 创建一个去重后的array数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。
+     *
+     * @param   {Array}  array  要检查的数组。
+     *
+     * @return  {Array}         返回新的去重后的数组。
+     */
+    uniq: function (array) {
+        return [...new Set(array)]
+    },
+
+    /**
+     * 创建一个剔除所有给定值的新数组，剔除值的时候，使用 SameValueZero做相等比较。 
+     *
+     * @return  {[type]}  [return description]
+     */
+    without: function (array, ...values) {
+        return array.filter(it => !values.includes(it))
+    },
+    /**
+     * 创建一个给定数组唯一值的数组，使用 symmetric difference做等值比较。返回值的顺序取决于他们数组的出现顺序。
+     *
+     * @return  {Array}  返回过滤值后的新数组。
+     */
+    xor: function(...arrays) {
+
     }
 
 }
