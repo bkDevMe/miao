@@ -395,7 +395,7 @@ var bkdevme = {
         let type = Object.prototype.toString.call(array)
         if (type == '[object Array]') {
             let start = 0
-            let end = array.length
+            let end = array.length - 1 
             while (start < end) {
                 [array[start], array[end]] = [array[end], array[start]]
                 start++
@@ -427,6 +427,7 @@ var bkdevme = {
             }
         }
         return high //这里是关键
-    }
+    },
+
 
 }
