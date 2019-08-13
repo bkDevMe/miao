@@ -395,7 +395,7 @@ var bkdevme = {
         let type = Object.prototype.toString.call(array)
         if (type == '[object Array]') {
             let start = 0
-            let end = array.length - 1 
+            let end = array.length - 1
             while (start < end) {
                 [array[start], array[end]] = [array[end], array[start]]
                 start++
@@ -428,6 +428,17 @@ var bkdevme = {
         }
         return high //这里是关键
     },
-
+    /**
+     * 创建一个按顺序排列的唯一值的数组。所有给定数组的元素值使用 SameValueZero做等值比较。
+     * （ arrays（数组）的并集，按顺序返回，返回数组的元素是唯一的）
+     *
+     * @return  {Array} 返回一个新数组
+     */
+    union: function (...arrays) {
+        // let result = arrays.reduce((a,b) => a.concat(b),[])
+        // let resSet = new Set(result)
+        // return [...resSet.values()]
+        return [...new Set(arrays.reduce((a,b) => a.concat(b),[])).values()]
+    }
 
 }
