@@ -383,6 +383,28 @@ var bkdevme = {
      */
     pull: function (array, ...values) {
         return array.filter(it => !values.includes(it))
+    },
+    /**
+     * 反转array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。 
+     * 可以使用Array.prototype.reverse.call(array)
+     * @param   {Array}  array  
+     *
+     * @return  {Array}  array        
+     */
+    reverse: function (array) {
+        let type = Object.prototype.toString.call(array)
+        if (type == '[object Array]') {
+            let start = 0
+            let end = array.length
+            while (start < end) {
+                [array[start], array[end]] = [array[end], array[start]]
+                start++
+                end--
+            }
+            return array
+        } else {
+            return array
+        }
     }
 
 }
