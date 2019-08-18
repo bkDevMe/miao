@@ -466,8 +466,36 @@ var bkdevme = {
      *
      * @return  {Array}  返回过滤值后的新数组。
      */
-    xor: function(...arrays) {
+    xor: function (...arrays) {
 
+    },
+    /**
+     * 这个方法类似于 _.zip，除了它接收分组元素的数组，并且创建一个数组，分组元素到打包前的结构。
+     * （返回数组的第一个元素包含所有的输入数组的第一元素，第一个元素包含了所有的输入数组的第二元素，依此类推。）
+     *
+     * @return  {[type]}  [return description]
+     */
+    unzip: function (array) {
+        let maxLength = -Infinity;
+        let result = [];
+        array.forEach((it) => {
+            if (it.length > maxLength) maxLength = it.length
+        })
+        for (let i = 0; i < maxLength; i++) {
+            let item = []
+            array.forEach(it => {
+                item.push(it[i])
+            })
+            result.push(item);
+        }
+        return result
+    },
+    /**
+     * 创建一个分组元素的数组，数组的第一个元素包含所有给定数组的第一个元素，数组的第二个元素包含所有给定数组的第二个元素，以此类推。
+     *
+     * @return  {[type]}  [return description]
+     */
+    zip: function (...array) {
+        return this.unzip(array)
     }
-
 }
